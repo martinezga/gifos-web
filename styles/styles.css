@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    font-family: 'Chakra Petch', sans-serif;
+}
+body {
+    padding: 10%;
+    background: rgba(255, 243, 250, 0.74);
+}
+.navBar {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+.navBar figure {
+    flex: 1;
+}
+.btn {
+    box-sizing: border-box;
+    width: 100%;
+    text-align: center;
+    padding: 5px 15px;
+}
+.btn a {
+    text-decoration: none;
+}
+.lila {
+    background: #F7C9F3;
+    border: 1px solid #110038 ;
+}
+.dropdown {
+    display: none;
+}
+.deco-btn::first-letter {
+    text-decoration: underline;
+}
+.search-sec {
+    box-sizing: border-box;
+    background: #E6E6E6;
+    margin: 25px 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: center;
+}
+.search-title {
+    background: linear-gradient(45deg, #4180F6, #F7C9F3);
+    color: #FFFFFF;
+    font-weight: bold;
+    padding: 3px 10px;
+    width: 100%;
+    box-sizing: border-box;
+    justify-items: ;
+}
+#search-bar {
+    width: 80%;
+    height: 30px;
+    margin: 10px;
+    border: 1px solid #979797;
+    box-shadow: -1px -1px 0px 0px #000000;
+}
+.btn2 {
+    border: 1px solid #808080;
+    align-self: center;
+    padding: 3px 9px;
+}
+.title-blocks {
+    background: #FFFAFE;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    border: 1px solid #E6BBE2;
+    box-shadow: -1px -1px 0px 0px #80687D;
+    padding: 5px;
+}
+.images-container > figure {
+    /*box-shadow: -1px -1px 0px 0px #B4B4B4;*/
+    max-width: 280px;
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: column wrap;
+}
+.images-container > figure > img {
+    max-width: 280px;
+    max-height: 280px;
+}
+.search-title > img {
+    padding-top: 3px;
+    float: right;
+}
+.btn3 {
+    background: #4180F6;
+    width: max-content;
+    padding: 7px 15px;
+    color: #FFFFFF;
+    border: 1px solid #4C2F99;
+    box-shadow: -1px -1px 0px 0px #284F99;
+    transform: translate(7px, -50px);
+}
+@media all and (min-width: 425px) {
+    .navBar {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    .navBar figure {
+        flex: 1;
+    }
+    .dropdown {
+        display: block;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+    .btn {
+        width: fit-content;
+    }
+    .space {
+        margin-right: 15px;
+    }
+}
+@media all and (min-width: 1024px) {
+    body {
+        padding: 7% 10%;
+    }
+}
+/* 
+
+*/
