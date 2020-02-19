@@ -38,6 +38,12 @@ body {
 .deco-btn::first-letter {
     text-decoration: underline;
 }
+.go-up {
+    position: sticky;
+    display: inline-block;
+    bottom: 30px;
+    left: 100vw;
+}
 .search-sec {
     box-sizing: border-box;
     background: #E6E6E6;
@@ -54,7 +60,6 @@ body {
     padding: 3px 10px;
     width: 100%;
     box-sizing: border-box;
-    justify-items: ;
 }
 #search-Input {
     width: 80%;
@@ -113,8 +118,9 @@ body {
     padding: 7px 15px;
     color: #FFFFFF;
     border: 1px solid #4C2F99;
-    box-shadow: -1px -1px 0px 0px #284F99;
-    transform: translate(7px, -50px);
+    position: relative;
+    bottom: 40px;
+    left: 10px;
 }
 @media all and (min-width: 425px) {
     .navBar {
