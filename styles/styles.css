@@ -41,8 +41,9 @@ body {
 .go-up {
     position: sticky;
     display: inline-block;
-    bottom: 30px;
+    bottom: 50px;
     left: 100vw;
+    width: 70px;
 }
 .search-sec {
     box-sizing: border-box;
@@ -149,11 +150,11 @@ body {
         padding: 7% 10%;
     }
 }
-/* @media all and (min-width: 1440px) {
+@media all and (min-width: 1440px) {
     body {
         background: grey;
         box-sizing: border-box;
-        max-width: 1600px;
+        max-width: 1440px;
         display: flex;
         flex-flow: column nowrap;
         align-content: space-between;
@@ -161,6 +162,3 @@ body {
         flex: 1;
     }
 }
-
-
-*/
