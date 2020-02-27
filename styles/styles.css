@@ -5,9 +5,17 @@
     font-family: 'Chakra Petch', sans-serif;
 }
 body {
-    box-sizing: border-box;
-    padding: 10%;
     background: rgba(255, 243, 250, 0.74);
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+main {
+    box-sizing: border-box;
+    margin: 5%;
+    background: rgba(255, 243, 250, 0.74);
+
 }
 .navBar {
     display: flex;
@@ -28,6 +36,9 @@ body {
 .btn a {
     text-decoration: none;
 }
+.btn:hover {
+    border: 1px dotted #110038;
+}
 .lila {
     background: #F7C9F3;
     border: 1px solid #110038 ;
@@ -37,6 +48,19 @@ body {
 }
 .deco-btn::first-letter {
     text-decoration: underline;
+}
+.dropdown-menu {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+}
+.dropdown-content-base {
+    display: flex;
+    flex-flow: row wrap;
+}
+.dropdown-content {
+    display: none;
+    background: grey;
 }
 .go-up {
     position: sticky;
@@ -113,6 +137,12 @@ body {
     width: auto;
     text-align: center;
 }
+#div-selector > figure > figcaption {
+    opacity: 0.05;
+}
+#div-selector > figure > figcaption:hover {
+    opacity: 1;
+}
 .btn3 {
     background: #4180F6;
     width: max-content;
@@ -144,21 +174,12 @@ body {
     .space {
         margin-right: 15px;
     }
-}
-@media all and (min-width: 1024px) {
-    body {
-        padding: 7% 10%;
+    .dropdown-menu {
+        width: 155px;
     }
 }
 @media all and (min-width: 1440px) {
-    body {
-        background: grey;
-        box-sizing: border-box;
-        max-width: 1440px;
-        display: flex;
-        flex-flow: column nowrap;
-        align-content: space-between;
-        justify-content: center;
-        flex: 1;
+    main {
+        width: 1200px;
     }
 }

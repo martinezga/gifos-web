@@ -37,12 +37,12 @@ async function searchFetch(keyword) {
     const data = await answer.json();
     return data
 }
-function scrollElement(name) {
+function scrollToElement(name) {
     const elementPosition = document.querySelector(name).getBoundingClientRect();
-    window.scroll(0, elementPosition.y);
+    window.scrollBy(0, elementPosition.y);
 }
-function userSearch() {
-    searchFetch(document.getElementById('search-Input').value).then(function(resp) {
+function userSearch(value) {
+    searchFetch(value).then(function(resp) {
         const oldDiv = document.getElementById('div-selector');
         const container = document.getElementById('container-Base');
         const newDiv = document.createElement('div');
@@ -63,13 +63,14 @@ function userSearch() {
             title.innerHTML = gif.title; 
         });
     });
-    scrollElement('#trends-Title');
+    scrollToElement('#trends-Title');
     document.querySelector('#trends-Title').innerHTML = document.querySelector('#search-Input').value;
 }
-document.getElementById('search-Button').addEventListener("click", userSearch);
+document.getElementById('search-Button').addEventListener("click", function() {
+    userSearch(document.getElementById('search-Input').value)});
 document.getElementById('search-Input').addEventListener("keydown", function(e) {
     if (e.keyCode === 13) {
-        userSearch();
+        userSearch(document.getElementById('search-Input').value);
     }
 });
 function numRandom(max, min) {
@@ -90,7 +91,6 @@ container.appendChild(newDiv);
 newDiv.setAttribute('class', 'images-container');
 Array.from(randomKeywords).forEach(gif => {
     searchFetch(gif).then(function(resp){
-        console.log(resp)
         const figure = document.createElement('figure');
         const title = document.createElement("figcaption");
         const img = document.createElement("img");
@@ -107,7 +107,11 @@ Array.from(randomKeywords).forEach(gif => {
         icon.setAttribute('alt', 'Close icon');
         img.setAttribute("src", resp.data[7].images.fixed_height_downsampled.url);
         button.setAttribute('class', 'btn3');
-        button.innerHTML = 'More...'
+        button.innerHTML = 'More...';
+        button.addEventListener('click', function() {
+            userSearch(gif);
+            document.querySelector('#trends-Title').innerHTML = gif;
+        })
     })
 })
 /*
@@ -138,5 +142,5 @@ function myRandomSearch() {
     })
 }*/
 document.querySelector('.go-up').addEventListener('click', function() {
-    scrollElement('.navBar')
+    scrollToElement('.navBar')
 })
