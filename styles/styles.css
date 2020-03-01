@@ -11,6 +11,9 @@ body {
     justify-content: center;
     align-items: center;
 }
+header {
+
+}
 main {
     box-sizing: border-box;
     margin: 5%;
@@ -29,12 +32,13 @@ main {
 }
 .btn {
     box-sizing: border-box;
-    width: 100%;
+    widhth: 100%;
     text-align: center;
     padding: 5px 15px;
 }
 .btn a {
     text-decoration: none;
+    color: #000000;
 }
 .btn:hover {
     border: 1px dotted #110038;
@@ -57,10 +61,14 @@ main {
 .dropdown-content-base {
     display: flex;
     flex-flow: row wrap;
+    justify-content: center;
 }
 .dropdown-content {
     display: none;
     background: grey;
+}
+#dropdown-button {
+    
 }
 .go-up {
     position: sticky;
@@ -97,6 +105,7 @@ main {
     border: 1px solid #808080;
     align-self: center;
     padding: 5px 9px;
+    color: #979797;
 }
 .btn2 > img {
     padding-right: 7px;
@@ -153,7 +162,7 @@ main {
     bottom: 40px;
     left: 10px;
 }
-@media all and (min-width: 425px) {
+@media all and (min-width: 520px) {
     .navBar {
         display: flex;
         flex-flow: row nowrap;
