@@ -75,21 +75,21 @@ function createDivForWordSearched(word) {
 document.getElementById('search-Button').addEventListener("click", function() {
     wordSearchedSet.add(document.getElementById('search-Input').value);
     userSearch(document.getElementById('search-Input').value);
-    searchedWords()
+    searchedWords(document.getElementById('search-Input').value)
 });
 document.getElementById('search-Input').addEventListener("keydown", function(e) {
     if (e.keyCode === 13) {
         wordSearchedSet.add(document.getElementById('search-Input').value)
         userSearch(document.getElementById('search-Input').value);
-        searchedWords()
+        searchedWords(document.getElementById('search-Input').value)
     }
 });
 let wordSearchedSet = new Set();
-function searchedWords() {
-    let lastSearchedWords = localStorage.getItem('gifosSearch'
+function searchedWords(value) {
+    let lastSearchedWords = localStorage.getItem('gifosSearch')
     let wordSearchedArray = Array.from(wordSearchedSet);
     console.log(wordSearchedArray)
-    createDivForWordSearched()
+    createDivForWordSearched(value)
     let wordSearchedArrayJson = JSON.stringify(wordSearchedArray);
     localStorage.setItem('gifosSearch', wordSearchedArrayJson);
 }
