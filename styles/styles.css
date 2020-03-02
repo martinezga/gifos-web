@@ -11,14 +11,10 @@ body {
     justify-content: center;
     align-items: center;
 }
-header {
-
-}
 main {
     box-sizing: border-box;
     margin: 5%;
     background: rgba(255, 243, 250, 0.74);
-
 }
 .navBar {
     display: flex;
@@ -32,7 +28,6 @@ main {
 }
 .btn {
     box-sizing: border-box;
-    widhth: 100%;
     text-align: center;
     padding: 5px 15px;
 }
@@ -54,7 +49,6 @@ main {
     text-decoration: underline;
 }
 .dropdown-menu {
-    width: 100%;
     display: flex;
     flex-flow: column;
 }
@@ -63,9 +57,12 @@ main {
     flex-flow: row wrap;
     justify-content: center;
 }
-.dropdown-content {
+.dropdown-hidden {
     display: none;
+}
+.dropdown-show {
     background: grey;
+    display: block;
 }
 #dropdown-button {
     
@@ -162,7 +159,7 @@ main {
     bottom: 40px;
     left: 10px;
 }
-@media all and (min-width: 520px) {
+@media all and (min-width: 525px) {
     .navBar {
         display: flex;
         flex-flow: row nowrap;
@@ -182,9 +179,6 @@ main {
     }
     .space {
         margin-right: 15px;
-    }
-    .dropdown-menu {
-        width: 155px;
     }
 }
 @media all and (min-width: 1440px) {

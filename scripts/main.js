@@ -57,8 +57,7 @@ function userSearch(value) {
             newDiv.appendChild(figure);
             figure.appendChild(img);
             figure.appendChild(title);
-            img.setAttribute("src", gif.images.fixed_height_downsampled.url);
-            //img.src = gif.images.fixed_height.url;        
+            img.setAttribute("src", gif.images.fixed_height_downsampled.url);      
             title.setAttribute('class', 'search-title fig-title');
             title.innerHTML = gif.title; 
         });
@@ -66,13 +65,34 @@ function userSearch(value) {
     scrollToElement('#trends-Title');
     document.querySelector('#trends-Title').innerHTML = document.querySelector('#search-Input').value;
 }
+function createDivForWordSearched(word) {
+    const container = document.querySelector('.search-sec');
+    const divWordSearched = document.createElement('div');
+    container.appendChild(divWordSearched);
+    divWordSearched.setAttribute('class', 'btn lila space')
+    divWordSearched.innerHTML = word
+}
 document.getElementById('search-Button').addEventListener("click", function() {
-    userSearch(document.getElementById('search-Input').value)});
+    wordSearchedSet.add(document.getElementById('search-Input').value);
+    userSearch(document.getElementById('search-Input').value);
+    searchedWords()
+});
 document.getElementById('search-Input').addEventListener("keydown", function(e) {
     if (e.keyCode === 13) {
+        wordSearchedSet.add(document.getElementById('search-Input').value)
         userSearch(document.getElementById('search-Input').value);
+        searchedWords()
     }
 });
+let wordSearchedSet = new Set();
+function searchedWords() {
+    let lastSearchedWords = localStorage.getItem('gifosSearch'
+    let wordSearchedArray = Array.from(wordSearchedSet);
+    console.log(wordSearchedArray)
+    createDivForWordSearched()
+    let wordSearchedArrayJson = JSON.stringify(wordSearchedArray);
+    localStorage.setItem('gifosSearch', wordSearchedArrayJson);
+}
 function numRandom(max, min) {
     let aleatorio = Math.floor((Math.random() * max) + min);
     return aleatorio
@@ -115,32 +135,13 @@ Array.from(randomKeywords).forEach(gif => {
     })
 })
 /*
-myKeywords.map(item => {
-    searchFetch(item).then(function(resp) {
-      console.log(resp)  
-    })
-})
 
-
-function myRandomSearch() {
-    
-
-    myKeywords.map(item => {
-        const container = document.getElementById('first-container-Base')
-        const newDiv = document.createElement('div');
-        newDiv.setAttribute('class', 'images-container');
-        const figure = document.createElement("figure");
-        const title = document.createElement("figcaption");        
-        const img = document.createElement("img");
-        container.appendChild(newDiv);
-        newDiv.appendChild(figure);       
-        figure.appendChild(img);
-        figure.appendChild(title);
-        title.setAttribute('class', 'search-title fig-title');
-        title.innerHTML = '#' + item;        
-        img.setAttribute("src", item.images.fixed_height_downsampled.url);
-    })
-}*/
+*/
 document.querySelector('.go-up').addEventListener('click', function() {
     scrollToElement('.navBar')
+})
+document.querySelector('.dropdown-content-base').addEventListener('click', function(){
+    document.getElementById('dropdown-content-menu').removeAttribute('class');
+    document.getElementById('dropdown-content-menu').setAttribute('class', 'dropdown-show')
+
 })
