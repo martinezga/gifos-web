@@ -155,9 +155,17 @@ main {
     padding: 7px 15px;
     color: #FFFFFF;
     border: 1px solid #4C2F99;
+}
+.btn-moved {
     position: relative;
     bottom: 40px;
-    left: 10px;
+    left: 10px;    
+}
+#words-searched {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
 }
 @media all and (min-width: 525px) {
     .navBar {

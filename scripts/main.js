@@ -59,40 +59,52 @@ function userSearch(value) {
             figure.appendChild(title);
             img.setAttribute("src", gif.images.fixed_height_downsampled.url);      
             title.setAttribute('class', 'search-title fig-title');
-            title.innerHTML = gif.title; 
+            title.innerHTML = gif.title;
         });
     });
     scrollToElement('#trends-Title');
     document.querySelector('#trends-Title').innerHTML = document.querySelector('#search-Input').value;
+    getWordsFromLocalStorage();
+    saveWordsToLocalStorage();
 }
 function createDivForWordSearched(word) {
-    const container = document.querySelector('.search-sec');
-    const divWordSearched = document.createElement('div');
-    container.appendChild(divWordSearched);
-    divWordSearched.setAttribute('class', 'btn lila space')
-    divWordSearched.innerHTML = word
+    const container = document.querySelector('#words-searched');
+    const divForWordsSearched = document.createElement('div');
+    container.appendChild(divForWordsSearched)
+    divForWordsSearched.setAttribute('class', 'btn3 space')
+    divForWordsSearched.innerHTML = word
 }
 document.getElementById('search-Button').addEventListener("click", function() {
     wordSearchedSet.add(document.getElementById('search-Input').value);
     userSearch(document.getElementById('search-Input').value);
-    searchedWords(document.getElementById('search-Input').value)
 });
 document.getElementById('search-Input').addEventListener("keydown", function(e) {
     if (e.keyCode === 13) {
         wordSearchedSet.add(document.getElementById('search-Input').value)
         userSearch(document.getElementById('search-Input').value);
-        searchedWords(document.getElementById('search-Input').value)
     }
 });
 let wordSearchedSet = new Set();
-function searchedWords(value) {
-    let lastSearchedWords = localStorage.getItem('gifosSearch')
-    let wordSearchedArray = Array.from(wordSearchedSet);
-    console.log(wordSearchedArray)
-    createDivForWordSearched(value)
-    let wordSearchedArrayJson = JSON.stringify(wordSearchedArray);
-    localStorage.setItem('gifosSearch', wordSearchedArrayJson);
+function saveWordsToLocalStorage() {
+    const wordSearchedSetToJson = JSON.stringify(Array.from(wordSearchedSet));
+    localStorage.setItem('gifosSearch', wordSearchedSetToJson);
 }
+function getWordsFromLocalStorage(){
+    const lastSearchedWords = localStorage.getItem('gifosSearch');
+    const lastSearchedWordsToArray = JSON.parse(lastSearchedWords);
+    const container = document.querySelector('.search-sec');
+    const oldDivForWordsSearched = document.querySelector('#words-searched');
+    const newDivForWordsSearched = document.createElement('div');
+    container.replaceChild(newDivForWordsSearched,oldDivForWordsSearched);
+    newDivForWordsSearched.setAttribute('id', 'words-searched')
+    lastSearchedWordsToArray.forEach(value => {
+        createDivForWordSearched(value)
+    })
+}
+getWordsFromLocalStorage();
+/*createDivFromLocalStorage(){
+    console.log(hola)
+};*/
 function numRandom(max, min) {
     let aleatorio = Math.floor((Math.random() * max) + min);
     return aleatorio
@@ -126,7 +138,7 @@ Array.from(randomKeywords).forEach(gif => {
         icon.setAttribute('src', 'images/close.svg');
         icon.setAttribute('alt', 'Close icon');
         img.setAttribute("src", resp.data[7].images.fixed_height_downsampled.url);
-        button.setAttribute('class', 'btn3');
+        button.setAttribute('class', 'btn3 btn-moved');
         button.innerHTML = 'More...';
         button.addEventListener('click', function() {
             userSearch(gif);
