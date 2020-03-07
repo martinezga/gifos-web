@@ -10,7 +10,7 @@ function createSomeElements() {
     const title = document.createElement("figcaption");
     figure.appendChild(img);
     figure.appendChild(title);
-     title.setAttribute('class', 'search-title fig-title');
+     title.setAttribute('class', 'search-title');
 }
 const trends = searchTrends();
 trends.then(function(resp) {
@@ -27,7 +27,7 @@ trends.then(function(resp) {
         figure.appendChild(img);
         figure.appendChild(title);
         img.setAttribute("src", gif.images.fixed_height_downsampled.url);     
-        title.setAttribute('class', 'search-title fig-title');
+        title.setAttribute('class', 'search-title');
         title.innerHTML = gif.title; 
     });
 });
@@ -58,53 +58,59 @@ function userSearch(value) {
             figure.appendChild(img);
             figure.appendChild(title);
             img.setAttribute("src", gif.images.fixed_height_downsampled.url);      
-            title.setAttribute('class', 'search-title fig-title');
+            title.setAttribute('class', 'search-title');
             title.innerHTML = gif.title;
         });
     });
     scrollToElement('#trends-Title');
     document.querySelector('#trends-Title').innerHTML = document.querySelector('#search-Input').value;
-    getWordsFromLocalStorage();
+    firstrenderLocalStorage()
+    wordSearchedSet.add(document.getElementById('search-Input').value);
+    renderWordSearched(document.getElementById('search-Input').value);
     saveWordsToLocalStorage();
-}
-function createDivForWordSearched(word) {
-    const container = document.querySelector('#words-searched');
-    const divForWordsSearched = document.createElement('div');
-    container.appendChild(divForWordsSearched)
-    divForWordsSearched.setAttribute('class', 'btn3 space')
-    divForWordsSearched.innerHTML = word
+    getWordsLocalStorage();
 }
 document.getElementById('search-Button').addEventListener("click", function() {
-    wordSearchedSet.add(document.getElementById('search-Input').value);
     userSearch(document.getElementById('search-Input').value);
 });
 document.getElementById('search-Input').addEventListener("keydown", function(e) {
     if (e.keyCode === 13) {
-        wordSearchedSet.add(document.getElementById('search-Input').value)
         userSearch(document.getElementById('search-Input').value);
     }
 });
-let wordSearchedSet = new Set();
+const wordSearchedSet = new Set();
 function saveWordsToLocalStorage() {
     const wordSearchedSetToJson = JSON.stringify(Array.from(wordSearchedSet));
     localStorage.setItem('gifosSearch', wordSearchedSetToJson);
 }
-function getWordsFromLocalStorage(){
+function firstrenderLocalStorage(){
+    const lastSearchedWords = localStorage.getItem('gifosSearch');
+    const lastSearchedWordsToArray = JSON.parse(lastSearchedWords);
+    lastSearchedWordsToArray.forEach(value => {
+        renderWordSearched(value)
+    })/*
+*/
+}
+firstrenderLocalStorage()
+function getWordsLocalStorage(){
     const lastSearchedWords = localStorage.getItem('gifosSearch');
     const lastSearchedWordsToArray = JSON.parse(lastSearchedWords);
     const container = document.querySelector('.search-sec');
     const oldDivForWordsSearched = document.querySelector('#words-searched');
     const newDivForWordsSearched = document.createElement('div');
     container.replaceChild(newDivForWordsSearched,oldDivForWordsSearched);
-    newDivForWordsSearched.setAttribute('id', 'words-searched')
+    newDivForWordsSearched.setAttribute('id', 'words-searched')    
     lastSearchedWordsToArray.forEach(value => {
-        createDivForWordSearched(value)
+        renderWordSearched(value)
     })
 }
-getWordsFromLocalStorage();
-/*createDivFromLocalStorage(){
-    console.log(hola)
-};*/
+function renderWordSearched(word) {
+    const container = document.querySelector('#words-searched');
+    const divForWordsSearched = document.createElement('div');
+    container.appendChild(divForWordsSearched)
+    divForWordsSearched.setAttribute('class', 'btn3 space')
+    divForWordsSearched.innerHTML = word
+}
 function numRandom(max, min) {
     let aleatorio = Math.floor((Math.random() * max) + min);
     return aleatorio
@@ -134,7 +140,7 @@ Array.from(randomKeywords).forEach(gif => {
         figure.appendChild(button);
         title.innerHTML = '#' + gif;
         title.appendChild(icon);
-        title.setAttribute('class', 'search-title fig-title');
+        title.setAttribute('class', 'search-title');
         icon.setAttribute('src', 'images/close.svg');
         icon.setAttribute('alt', 'Close icon');
         img.setAttribute("src", resp.data[7].images.fixed_height_downsampled.url);
@@ -156,4 +162,18 @@ document.querySelector('.dropdown-content-base').addEventListener('click', funct
     document.getElementById('dropdown-content-menu').removeAttribute('class');
     document.getElementById('dropdown-content-menu').setAttribute('class', 'dropdown-show')
 
+})
+document.querySelector('#dark-style').addEventListener('click', function(){
+    document.querySelector('#main-logo').src = 'images/gifOF_logo_dark.png';
+    const searchButtonStyle = document.querySelectorAll('.lila');
+    for(let i = 0; i < searchButtonStyle.length; i++) {
+        searchButtonStyle[i].removeAttribute('class', 'lila')
+        /*searchButtonStyle[i].toggleAttribute()*/
+    };
+    document.body.setAttribute('class', 'dark-body');
+    document.querySelector('#main-body').setAttribute('class', 'dark-body');
+    const searchTitleStyle = document.querySelectorAll('.search-title');
+    for(let i = 0; i < searchTitleStyle.length; i++) {
+        searchTitleStyle[i].setAttribute('class', 'dark-search-title');
+    };
 })

@@ -64,9 +64,6 @@ main {
     background: grey;
     display: block;
 }
-#dropdown-button {
-    
-}
 .go-up {
     position: sticky;
     display: inline-block;
@@ -124,24 +121,19 @@ main {
     align-content: center;
 }
 .images-container > figure {
-    /*box-shadow: -1px -1px 0px 0px #B4B4B4;*/
-    max-width: 260px;
+    width: 260px;
     padding: 10px;
     box-sizing: border-box;
     display: flex;
     flex-flow: column wrap;
 }
 .images-container > figure > img {
-    max-width: 240px;
+    width: 240px;
     height: 240px;
 }
 .search-title > img {
     padding-top: 3px;
     float: right;
-}
-.fig-title {
-    width: auto;
-    text-align: center;
 }
 #div-selector > figure > figcaption {
     opacity: 0.05;

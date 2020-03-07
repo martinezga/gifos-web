@@ -1,0 +1,19 @@
+.dark-body {
+    background: #1a1a1a;
+}
+.dark-search-title {
+    background: linear-gradient(45deg, #2E32FB, #EE3EFE);
+    color: #FFFFFF;
+    font-weight: bold;
+    padding: 3px 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.dark-search-title > img {
+    padding-top: 3px;
+    float: right;
+}
+.dark-lila {
+    background: #EE3EFE;
+    border: 1px solid #110038 ;
+}
