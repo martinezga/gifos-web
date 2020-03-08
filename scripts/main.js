@@ -64,11 +64,9 @@ function userSearch(value) {
     });
     scrollToElement('#trends-Title');
     document.querySelector('#trends-Title').innerHTML = document.querySelector('#search-Input').value;
-    firstrenderLocalStorage()
     wordSearchedSet.add(document.getElementById('search-Input').value);
     renderWordSearched(document.getElementById('search-Input').value);
     saveWordsToLocalStorage();
-    getWordsLocalStorage();
 }
 document.getElementById('search-Button').addEventListener("click", function() {
     userSearch(document.getElementById('search-Input').value);
@@ -78,31 +76,29 @@ document.getElementById('search-Input').addEventListener("keydown", function(e) 
         userSearch(document.getElementById('search-Input').value);
     }
 });
+function verifyLocalStorage() {
+    const wordsLocalStorage = localStorage.getItem('gifosSearch');
+    if (wordsLocalStorage === null) {
+        const initLocalStorage = [];
+        localStorage.setItem('gifosSearch', initLocalStorage)
+    } else {
+        const container = document.querySelector('.search-sec');
+        const oldDivForWordsSearched = document.querySelector('#words-searched');
+        const newDivForWordsSearched = document.createElement('div');
+        container.replaceChild(newDivForWordsSearched,oldDivForWordsSearched);
+        newDivForWordsSearched.setAttribute('id', 'words-searched')
+        const wordsLocalStorageArray = JSON.parse(wordsLocalStorage);
+        wordsLocalStorageArray.forEach(value => {
+            renderWordSearched(value)
+        })
+    }
+}
+verifyLocalStorage()
 const wordSearchedSet = new Set();
 function saveWordsToLocalStorage() {
+    verifyLocalStorage()
     const wordSearchedSetToJson = JSON.stringify(Array.from(wordSearchedSet));
     localStorage.setItem('gifosSearch', wordSearchedSetToJson);
-}
-function firstrenderLocalStorage(){
-    const lastSearchedWords = localStorage.getItem('gifosSearch');
-    const lastSearchedWordsToArray = JSON.parse(lastSearchedWords);
-    lastSearchedWordsToArray.forEach(value => {
-        renderWordSearched(value)
-    })/*
-*/
-}
-firstrenderLocalStorage()
-function getWordsLocalStorage(){
-    const lastSearchedWords = localStorage.getItem('gifosSearch');
-    const lastSearchedWordsToArray = JSON.parse(lastSearchedWords);
-    const container = document.querySelector('.search-sec');
-    const oldDivForWordsSearched = document.querySelector('#words-searched');
-    const newDivForWordsSearched = document.createElement('div');
-    container.replaceChild(newDivForWordsSearched,oldDivForWordsSearched);
-    newDivForWordsSearched.setAttribute('id', 'words-searched')    
-    lastSearchedWordsToArray.forEach(value => {
-        renderWordSearched(value)
-    })
 }
 function renderWordSearched(word) {
     const container = document.querySelector('#words-searched');
