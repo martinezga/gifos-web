@@ -64,8 +64,6 @@ function userSearch(value) {
     });
     scrollToElement('#trends-Title');
     document.querySelector('#trends-Title').innerHTML = document.querySelector('#search-Input').value;
-    wordSearchedSet.add(document.getElementById('search-Input').value);
-    renderWordSearched(document.getElementById('search-Input').value);
     saveWordsToLocalStorage();
 }
 document.getElementById('search-Button').addEventListener("click", function() {
@@ -79,8 +77,9 @@ document.getElementById('search-Input').addEventListener("keydown", function(e) 
 function verifyLocalStorage() {
     const wordsLocalStorage = localStorage.getItem('gifosSearch');
     if (wordsLocalStorage === null) {
-        const initLocalStorage = [];
-        localStorage.setItem('gifosSearch', initLocalStorage)
+        const wordSearchedSet = new Set();
+        const wordSearchedSetToJson = JSON.stringify(Array.from(wordSearchedSet));
+        localStorage.setItem('gifosSearch', wordSearchedSetToJson)
     } else {
         const container = document.querySelector('.search-sec');
         const oldDivForWordsSearched = document.querySelector('#words-searched');
@@ -94,9 +93,19 @@ function verifyLocalStorage() {
     }
 }
 verifyLocalStorage()
-const wordSearchedSet = new Set();
+let wordSearchedSet = new Set();
+function getLocalStorage() {
+    const wordsLocalStorage = localStorage.getItem('gifosSearch');
+    const wordsLocalStorageArray = JSON.parse(wordsLocalStorage);
+    wordsLocalStorageArray.forEach(value => {
+        wordSearchedSet.add(value)
+    })
+}
 function saveWordsToLocalStorage() {
-    verifyLocalStorage()
+    getLocalStorage();
+    wordSearchedSet.add(document.getElementById('search-Input').value);
+    verifyLocalStorage();
+    renderWordSearched(document.getElementById('search-Input').value);    
     const wordSearchedSetToJson = JSON.stringify(Array.from(wordSearchedSet));
     localStorage.setItem('gifosSearch', wordSearchedSetToJson);
 }
