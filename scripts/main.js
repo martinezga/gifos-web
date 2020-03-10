@@ -114,7 +114,7 @@ function renderWordSearched(word) {
     const divForWordsSearched = document.createElement('div');
     container.appendChild(divForWordsSearched)
     divForWordsSearched.setAttribute('class', 'btn3 space')
-    divForWordsSearched.innerHTML = word
+    divForWordsSearched.innerHTML = '#' + word
 }
 function numRandom(max, min) {
     let aleatorio = Math.floor((Math.random() * max) + min);
@@ -166,7 +166,6 @@ document.querySelector('.go-up').addEventListener('click', function() {
 document.querySelector('.dropdown-content-base').addEventListener('click', function(){
     document.getElementById('dropdown-content-menu').removeAttribute('class');
     document.getElementById('dropdown-content-menu').setAttribute('class', 'dropdown-show')
-
 })
 document.querySelector('#dark-style').addEventListener('click', function(){
     document.querySelector('#main-logo').src = 'images/gifOF_logo_dark.png';

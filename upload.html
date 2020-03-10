@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload your Gif</title>
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <link rel="stylesheet" type="text/css" href="styles/dark-styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Chakra+Petch&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/RecordRTC/5.5.6/RecordRTC.js"></script>
+</head>
+<body>
+    <header class="search-title">Welcome to my GIFOS website! ----- You are visitor number: 3.126.979</header>
+    <main>
+        <nav class="navBar">
+            <figure><a href="/index.html"><img class="space" src="/images/arrow.svg" alt="Left arrow icon"><img id="main-logo" src="images/gifOF_logo.png" alt="My GifOS's logo"></a></figure>
+            <button class="btn lila space"><a href="upload.html"></a>Create Guifos</a></button>
+            <div class="dropdown-menu" >
+                <div class="dropdown-content-base">
+                    <button class="btn lila">Choose tema</button>
+                    <button id="dropdown-button" class="btn lila dropdown space"><img src="images/dropdown.svg" alt="A dropdown icon"></button>
+                </div>
+                <div id="dropdown-content-menu" class="hidden-element">
+                    <button i
+                    d="light-style" class="btn lila">Sailor Day</button>
+                    <button id="dark-style" class="btn lila">Sailor Night</button>
+                </div>
+            </div>
+            <button class="btn deco-btn"><a href="upload.html">My Gifos</a></button>
+        </nav>
+        <section id="video-explaining-step" class="search-sec">
+            <div class="search-title">Create your gifo!</div>
+            <div><img src="/images/window img.png" alt="Window icon"> Here Aquí podrás crear tus propios guifos</div>
+            <p>Crear tu guifo es muy fácil, graba cualquier imagen con tu cámara y obtén guifos personalizados. Los pasos para crear tu guifo son:
+1) Dar permisos de acceso a la cámara (sólo por el tiempo de uso)
+2) Capturar tu momento guifo
+3) Revisar el momento
+4) Listo para subir y compartir!
+¿Quieres comenzar a crear tu guifo ahora?                    
+            </p>
+            <button id="cancel-button" class="btn2 space">Cancel</button>
+            <button id="start-button" class="btn2 lila">Start</button>
+        </section>
+        <section id="streaming-camera-step" class="search-sec">
+            <div class="search-title">Checking your camera device<img src="/images/close.svg" alt="close icon"></div>
+            <video id="video-tag"></video>
+            <button id="camera-img" class="lila dropdown"><img src="/images/camera.svg" alt=""></button>
+            <button id="start-button" class="btn2 lila">Capture</button>
+        </section>
+        <section id="recording-video-step" class="search-sec">
+            <div class="search-title">Recording your gifo<img src="/images/close.svg" alt="close icon"></div>
+            <div class="buttons-panel">
+                <button id="camera-img" class="lila dropdown"><img src="/images/camera.svg" alt=""></button>
+                <button id="start-button" class="btn2 lila">Stop recording</button>
+            </div>
+
+        </section>
+        <section id="previewing-video-step" class="search-sec">
+            <div class="search-title">Preview your gifo<img src="/images/close.svg" alt="close icon"></div>
+            <button id="camera-img" class="lila dropdown"><img src="/images/camera.svg" alt=""></button>
+            <button id="start-button" class="btn2 lila">Capture</button>
+        </section>
+        <section id="uploading-video-step" class="search-sec">
+            <div class="search-title">Uploading your gifo<img src="/images/close.svg" alt="close icon"></div>
+            <button id="start-button" class="btn2 lila">Cancel</button>
+        </section>
+        <section id="sucessing-upload-step" class="search-sec">
+            <div class="search-title">Gifo uploaded sucessfully<img src="/images/close.svg" alt="close icon"></div>
+            <button id="start-button" class="btn2 lila">Ready</button>
+        </section>
+        <section id="uploaded-gifs">
+            <div class="title-blocks">My uploaded Gifos</div>
+        </section>
+    </main>
+    <script src="scripts/upload.js"></script>
+</body>
+</html>
