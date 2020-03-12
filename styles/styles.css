@@ -187,10 +187,7 @@ main {
     }
 }
 /*upload page's style*/
-video {
+.gif-recorder-stylish {
     width: 100%;
-}
-.buttons-panel {
-    display: flex;
-    flex-flow: row;
+    margin: 15px;
 }
