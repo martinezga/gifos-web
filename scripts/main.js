@@ -10,7 +10,7 @@ function createSomeElements() {
     const title = document.createElement("figcaption");
     figure.appendChild(img);
     figure.appendChild(title);
-     title.setAttribute('class', 'search-title');
+    title.setAttribute('class', 'search-title');
 }
 const trends = searchTrends();
 trends.then(function(resp) {
