@@ -171,8 +171,7 @@ document.querySelector('#dark-style').addEventListener('click', function(){
     document.querySelector('#main-logo').src = 'images/gifOF_logo_dark.png';
     const searchButtonStyle = document.querySelectorAll('.lila');
     for(let i = 0; i < searchButtonStyle.length; i++) {
-        searchButtonStyle[i].removeAttribute('class', 'lila')
-        /*searchButtonStyle[i].toggleAttribute()*/
+        searchButtonStyle[i].style.background = '#EE3EFE'
     };
     document.body.setAttribute('class', 'dark-body');
     document.querySelector('#main-body').setAttribute('class', 'dark-body');
@@ -180,4 +179,19 @@ document.querySelector('#dark-style').addEventListener('click', function(){
     for(let i = 0; i < searchTitleStyle.length; i++) {
         searchTitleStyle[i].setAttribute('class', 'dark-search-title');
     };
+})
+document.querySelector('#light-style').addEventListener('click', function() {
+    document.querySelector('#main-logo').src = 'images/gifOF_logo.png'
+    const darkBackgrounds = document.querySelectorAll('.dark-body');
+    for(let i = 0; i < darkBackgrounds.length; i++) {
+        darkBackgrounds[i].toggleAttribute('class');
+    };
+    const searchDarkButtons = document.querySelectorAll('.lila');
+    for(let i = 0; i < searchDarkButtons.length; i++) {
+        searchDarkButtons[i].toggleAttribute('style')
+    };
+    const searchDarkTitles = document.querySelectorAll('.dark-search-title');
+    for(let i = 0; i < searchDarkTitles.length; i++) {
+        searchDarkTitles[i].setAttribute('class', 'search-title')
+    }
 })

@@ -61,7 +61,7 @@ main {
     display: none;
 }
 .dropdown-show {
-    background: grey;
+    /*background: grey;*/
     display: block;
 }
 .go-up {
