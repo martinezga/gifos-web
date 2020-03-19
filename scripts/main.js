@@ -102,9 +102,7 @@ function clearTagsAndLocalStorage() {
 function verifyLocalStorage() {
     const wordsLocalStorage = localStorage.getItem('gifosSearch');
     if (wordsLocalStorage === null) {
-        const wordSearchedSet = new Set();
-        const wordSearchedSetToJson = JSON.stringify(Array.from(wordSearchedSet));
-        localStorage.setItem('gifosSearch', wordSearchedSetToJson)
+        localStorage.setItem('gifosSearch', '[]')
     } else {
         const wordsLocalStorageArray = JSON.parse(wordsLocalStorage);
         wordsLocalStorageArray.forEach(value => {
