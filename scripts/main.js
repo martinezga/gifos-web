@@ -63,17 +63,42 @@ function userSearch(value) {
         });
     });
     scrollToElement('#trends-Title');
-    document.querySelector('#trends-Title').innerHTML = document.querySelector('#search-Input').value;
-    saveWordsToLocalStorage();
+    saveWordsToLocalStorage(value);
 }
 document.getElementById('search-Button').addEventListener("click", function() {
+    document.querySelector('#trends-Title').innerHTML = document.querySelector('#search-Input').value;
     userSearch(document.getElementById('search-Input').value);
+    document.querySelector('#menu-search-help').setAttribute('class', 'hidden-element')
 });
 document.getElementById('search-Input').addEventListener("keydown", function(e) {
+    document.querySelector('#menu-search-help').setAttribute('class', 'search-input-div')
     if (e.keyCode === 13) {
+        document.querySelector('#trends-Title').innerHTML = document.querySelector('#search-Input').value;
         userSearch(document.getElementById('search-Input').value);
+        document.querySelector('#menu-search-help').setAttribute('class', 'hidden-element')
     }
 });
+function replaceDivsForTags() {
+        const container = document.querySelector('#search-bar-principal-div');
+        const oldDivForWordsSearched = document.querySelector('#words-searched');
+        const newDivForWordsSearched = document.createElement('div');
+        container.replaceChild(newDivForWordsSearched,oldDivForWordsSearched);
+        newDivForWordsSearched.setAttribute('id', 'words-searched');
+        clearTagsAndLocalStorage()
+}
+function clearTagsAndLocalStorage() {
+    const container = document.querySelector('#words-searched');
+    const clearTags = document.createElement('div');
+    container.appendChild(clearTags);
+    clearTags.setAttribute('id', 'clear-tags-btn')
+    clearTags.setAttribute('class', 'btn space');
+    clearTags.innerHTML = 'Clear tags'
+    clearTags.addEventListener('click', function() {
+        localStorage.clear();
+        localStorage.setItem('gifosSearch', '[]');
+        replaceDivsForTags()
+    })
+}
 function verifyLocalStorage() {
     const wordsLocalStorage = localStorage.getItem('gifosSearch');
     if (wordsLocalStorage === null) {
@@ -81,11 +106,6 @@ function verifyLocalStorage() {
         const wordSearchedSetToJson = JSON.stringify(Array.from(wordSearchedSet));
         localStorage.setItem('gifosSearch', wordSearchedSetToJson)
     } else {
-        const container = document.querySelector('.search-sec');
-        const oldDivForWordsSearched = document.querySelector('#words-searched');
-        const newDivForWordsSearched = document.createElement('div');
-        container.replaceChild(newDivForWordsSearched,oldDivForWordsSearched);
-        newDivForWordsSearched.setAttribute('id', 'words-searched')
         const wordsLocalStorageArray = JSON.parse(wordsLocalStorage);
         wordsLocalStorageArray.forEach(value => {
             renderWordSearched(value)
@@ -93,28 +113,34 @@ function verifyLocalStorage() {
     }
 }
 verifyLocalStorage()
-let wordSearchedSet = new Set();
 function getLocalStorage() {
     const wordsLocalStorage = localStorage.getItem('gifosSearch');
     const wordsLocalStorageArray = JSON.parse(wordsLocalStorage);
-    wordsLocalStorageArray.forEach(value => {
+    return wordsLocalStorageArray
+}
+function saveWordsToLocalStorage(word) {
+    const wordSearchedSet = new Set();
+    const wordsLocalStorageArray = getLocalStorage();
+    wordsLocalStorageArray.forEach( value => {
         wordSearchedSet.add(value)
     })
-}
-function saveWordsToLocalStorage() {
-    getLocalStorage();
-    wordSearchedSet.add(document.getElementById('search-Input').value);
-    verifyLocalStorage();
-    renderWordSearched(document.getElementById('search-Input').value);    
-    const wordSearchedSetToJson = JSON.stringify(Array.from(wordSearchedSet));
-    localStorage.setItem('gifosSearch', wordSearchedSetToJson);
+    wordSearchedSet.add(word);
+    const wordSearchedArray = Array.from(wordSearchedSet)
+    const wordSearchedSetToJson = JSON.stringify(wordSearchedArray);
+    localStorage.setItem('gifosSearch', wordSearchedSetToJson)
+    replaceDivsForTags()
+    verifyLocalStorage()
 }
 function renderWordSearched(word) {
     const container = document.querySelector('#words-searched');
     const divForWordsSearched = document.createElement('div');
     container.appendChild(divForWordsSearched)
     divForWordsSearched.setAttribute('class', 'btn3 space')
-    divForWordsSearched.innerHTML = '#' + word
+    divForWordsSearched.innerHTML = '#' + word;
+    divForWordsSearched.addEventListener('click', function() {
+        userSearch(word);
+        document.querySelector('#trends-Title').innerHTML = word;
+    })
 }
 function numRandom(max, min) {
     let aleatorio = Math.floor((Math.random() * max) + min);
@@ -157,15 +183,14 @@ Array.from(randomKeywords).forEach(gif => {
         })
     })
 })
-/*
-
-*/
 document.querySelector('.go-up').addEventListener('click', function() {
     scrollToElement('.navBar')
 })
-document.querySelector('.dropdown-content-base').addEventListener('click', function(){
-    document.getElementById('dropdown-content-menu').removeAttribute('class');
+document.querySelector('.dropdown-menu').addEventListener('mouseenter', function(){
     document.getElementById('dropdown-content-menu').setAttribute('class', 'dropdown-show')
+})
+document.querySelector('.dropdown-menu').addEventListener('mouseleave', function(){
+    document.getElementById('dropdown-content-menu').setAttribute('class', 'hidden-element')
 })
 document.querySelector('#dark-style').addEventListener('click', function(){
     document.querySelector('#main-logo').src = 'images/gifOF_logo_dark.png';
@@ -194,4 +219,16 @@ document.querySelector('#light-style').addEventListener('click', function() {
     for(let i = 0; i < searchDarkTitles.length; i++) {
         searchDarkTitles[i].setAttribute('class', 'search-title')
     }
+})
+document.querySelector('#search-example-1').addEventListener('click', function() {
+    document.querySelector('#trends-Title').innerHTML = document.querySelector('#search-example-1').innerHTML;
+    userSearch(document.querySelector('#search-example-1').innerHTML)
+})
+document.querySelector('#search-example-2').addEventListener('click', function() {
+    document.querySelector('#trends-Title').innerHTML = document.querySelector('#search-example-2').innerHTML;
+    userSearch(document.querySelector('#search-example-2').innerHTML)
+})
+document.querySelector('#search-example-3').addEventListener('click', function() {
+    document.querySelector('#trends-Title').innerHTML = document.querySelector('#search-example-3').innerHTML;
+    userSearch(document.querySelector('#search-example-3').innerHTML)
 })

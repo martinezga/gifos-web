@@ -40,17 +40,16 @@ main {
 }
 .lila {
     background: #F7C9F3;
-    border: 1px solid #110038 ;
+    border: 1px solid #110038;
 }
-.dropdown {
+.lila:hover {
+    background: rgb(235, 193, 231);
+}
+.drpopdown {
     display: none;
 }
 .deco-btn::first-letter {
     text-decoration: underline;
-}
-.dropdown-menu {
-    display: flex;
-    flex-flow: column;
 }
 .dropdown-content-base {
     display: flex;
@@ -61,8 +60,20 @@ main {
     display: none;
 }
 .dropdown-show {
-    /*background: grey;*/
-    display: block;
+    display: flex;
+    flex-flow: column;
+    position: absolute;
+    box-sizing: border-box;
+    padding: 5px;
+    background: #E6E6E6;
+}
+.dropdown-show button {
+    margin: 10px 5px;
+    width: 120px;
+    text-align: left;
+}
+.dropdown-show button:hover {
+    background: #FFF4FD;
 }
 .go-up {
     position: sticky;
@@ -89,11 +100,29 @@ main {
     box-sizing: border-box;
 }
 #search-Input {
-    width: 80%;
+    width: 84%;
     height: 30px;
     margin: 10px;
     border: 1px solid #979797;
-    box-shadow: -1px -1px 0px 0px #000000;
+    box-shadow: -1px -1px 2px 0px #000000;
+}
+.search-input-div {
+    width: 100%;
+    padding: 0 10px;
+}
+.deco-div-search {
+    box-shadow: inset -2px -2px 0px 0px #B4B4B4;
+}
+.search-input-div div {
+    width: 84%;
+    height: 30px;
+    margin: 10px;
+    background: #F0F0F0;
+    border: 1px solid #979797;
+    text-align: left;
+}
+.search-input-div div:hover {
+    background: #d1d1d1;
 }
 .btn2 {
     border: 1px solid #808080;
@@ -158,6 +187,7 @@ main {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+    padding: 10px;
 }
 @media all and (min-width: 525px) {
     .navBar {
