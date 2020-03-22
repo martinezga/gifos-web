@@ -211,13 +211,74 @@ main {
         margin-right: 15px;
     }
 }
+@media all and (min-width: 768px) {
+    .video-width {
+        width: 768px;
+    }
+}
 @media all and (min-width: 1440px) {
     main {
         width: 1200px;
     }
 }
 /*upload page's style*/
+.explaining-text {
+    padding-left: 10vw;
+}
+.explaining-text > p {
+    padding: 5px 0;
+}
+.explaining-title {
+    padding-top: 35px;
+    padding-left: 5vw;
+}
 .gif-recorder-stylish {
     width: 100%;
-    margin: 15px;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 15px;
+}
+.recording-btn-style {
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-end;
+    align-content: center;
+    width: 100%;
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+.timestamp-div {
+    flex: 1;
+}
+.timer-btn {
+    padding: 3px 9px;
+    background: #FFFFFF;
+    width: max-content;
+    border: 1px solid #80687D;
+}
+.video-width {
+    box-sizing: border-box;
+    margin: 0 15vw;
+    display: flex;
+    flex-flow: column;
+}
+.red-stop-btn {
+    background: #FF6161;
+    color: #FFFFFF;    
+}
+.gifo-created-div {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+.gifo-created-btns {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding-left: 20px;
+}
+.gifo-created-btns > button {
+    margin: 5px;
 }

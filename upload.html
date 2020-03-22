@@ -16,50 +16,81 @@
         <nav class="navBar">
             <figure><a href="index.html"><img class="space" src="images/arrow.svg" alt="Left arrow icon"><img id="main-logo" src="images/gifOF_logo.png" alt="My GifOS's logo"></a></figure>
             <button class="btn lila space"><a href="upload.html"></a>Create Guifos</a></button>
-            <button class="btn deco-btn"><a href="upload.html">My Gifos</a></button>
+            <button class="btn deco-btn"><a href="#uploaded-gifs">My Gifos</a></button>
         </nav>
-        <section id="video-explaining-step" class="search-sec">
+        <section id="video-explaining-step" class="search-sec video-width">
             <div class="search-title">0.- Create your gifo!</div>
-            <div><img src="images/window-img.png" alt="Window icon"> Here Aquí podrás crear tus propios guifos</div>
-            <p>Crear tu guifo es muy fácil, graba cualquier imagen con tu cámara y obtén guifos personalizados. Los pasos para crear tu guifo son:
-1) Dar permisos de acceso a la cámara (sólo por el tiempo de uso)
-2) Capturar tu momento guifo
-3) Revisar el momento
-4) Listo para subir y compartir!
-¿Quieres comenzar a crear tu guifo ahora?                    
-            </p>
-            <button id="cancel-button" class="btn2 space">Cancel</button>
-            <button id="start-button" class="btn2 lila">Start</button>
+            <div class="explaining-title"><img src="images/window-img.png" alt="Window icon"><strong> You can create your own gifs here.</strong></div>
+            <div class="explaining-text">
+                <p>It's easy, only use your webcam. Follow the next steps:</br>
+                <p><strong>1)</strong> Give permissions to access to webcam.</br>
+                <p>2) Record your guifo.</br>
+                <p>3) Preview it.</br>
+                <p>4) Upload and share!</br>
+                <p> ¿Ready to record your gifo?</p>                
+            </div>
+            <div class="recording-btn-style">
+                <button id="cancel-button" class="btn space">Cancel</button>
+                <button id="start-button" class="btn lila">Start</button>
+            </div>
         </section>
-        <section id="streaming-camera-step" class="search-sec">
+        <section id="streaming-camera-step" class="hidden-element">
             <div class="search-title">1.- Checking your camera device<img src="/images/close.svg" alt="close icon"></div>
             <video id="step1-streaming-video" class="gif-recorder-stylish"></video>
-            <button class="lila dropdown"><img src="images/camera.svg" alt=""></button>
-            <button id="start-capture-button" class="btn2 lila">Capture</button>
+            <div class="recording-btn-style">
+                <button class="lila dropdown"><img src="images/camera.svg" alt=""></button>
+                <button id="start-capture-button" class="btn lila">Capture</button>
+            </div>
         </section>
-        <section id="recording-video-step" class="search-sec">
+        <section id="recording-video-step" class="hidden-element">
             <div class="search-title">2.- Recording your gifo<img src="images/close.svg" alt="close icon"></div>
             <img id="step2-recording-video" class="gif-recorder-stylish"></img>
-            <button class="lila dropdown"><img src="images/recording.svg" alt=""></button>
-            <button id="stop-recording-button" class="btn2 lila">Stop recording</button>
+            <div class="recording-btn-style">
+                <div class="timestamp-div">
+                    <div id="start-timestamp-div" class="timer-btn">Timestamping 1</div>
+                </div>
+                <button class="lila dropdown red-stop-btn"><img src="images/recording.svg" alt=""></button>
+                <button id="stop-recording-button" class="btn2 lila red-stop-btn">Stop recording</button>
+            </div>           
         </section>
-        <section id="previewing-video-step" class="search-sec">
+        <section id="previewing-video-step" class="hidden-element">
             <div class="search-title">3.- Preview your gifo<img src="images/close.svg" alt="close icon"></div>
             <img id="step3-preview-video" class="gif-recorder-stylish"></img>
-            <button id="repeat-recording-button" class="btn2 lila space">Repeat</button>
-            <button id="upload-gif-button" class="btn2 lila">Upload gifo</button>
+            <div class="recording-btn-style">
+                <div class="timestamp-div">
+                    <div id="stoped-timestamp-div" class="timer-btn">Timestamping 2</div>
+                </div>
+                <button id="repeat-recording-button" class="btn lila space">Repeat</button>
+                <button id="upload-gif-button" class="btn lila">Upload gifo</button>
+            </div>
         </section>
-        <section id="uploading-video-step" class="search-sec">
+        <section id="uploading-video-step" class="hidden-element">
             <div class="search-title">4.- Uploading your gifo<img src="images/close.svg" alt="close icon"></div>
-            <button id="start-button" class="btn2 lila">Cancel</button>
+            <div class="recording-btn-style">
+                <button id="start-button" class="btn lila">Cancel</button>
+            </div>
         </section>
-        <section id="sucessing-upload-step" class="search-sec">
+        <section id="sucessing-upload-step" class="hidden-element">
             <div class="search-title">5.- Gifo uploaded sucessfully<img src="images/close.svg" alt="close icon"></div>
-            <button id="start-button" class="btn2 lila">Ready</button>
+            <div class="gifo-created-div">
+                <div class="images-container">
+                    <figure>
+                        <img id="gifo-uploaded-img">
+                    </figure>
+                </div>
+                <div class="gifo-created-btns">
+                    <div><strong>Gifo created successfully!</strong></div>
+                    <button id="copy-url-gifo-btn" class="timer-btn">Copy your gifo link</button>
+                    <button id="download-gifo-btn" class="timer-btn">Donwload your gifo</button>
+                </div>                
+            </div>
+            <div class="recording-btn-style">
+                <button id="start-button" class="btn lila">Ready</button>                
+            </div>
         </section>
         <section id="uploaded-gifs">
             <div class="title-blocks">My uploaded Gifos</div>
-            <div class="images-container"></div>
+            <div id="mygifos-container" class="images-container"></div>
         </section>
     </main>
     <script src="scripts/upload.js"></script>
