@@ -5,7 +5,6 @@ function startStreamingVideo() {
         audio: false, 
         video: { 
             width: { min: 240, max: 480},
-            //height: {min: 240, max: 480}
         }
     })
     .then(function(stream) {
@@ -26,7 +25,6 @@ function captureCamera(callback) {
         audio: false, 
         video: { 
             width: { min: 240, max: 480},
-            //height: {min: 240, max: 480}
         }
     }).then(function(camera) {
         callback(camera);
@@ -36,18 +34,16 @@ function captureCamera(callback) {
     });
 }
 function stopRecordingCallback() {
-    //document.querySelector('h1').innerHTML = 'Gif recording stopped: ' + bytesToSize(recorder.getBlob().size);
+    console.log(recorder.getBlob())
     document.querySelector('#step3-preview-video').src = URL.createObjectURL(recorder.getBlob())
-    recorder.camera.getTracks().forEach(function(track) {
-        track.stop();
-    });
     recorder.camera.stop();
-    recorder = null;
 }
 async function uploadYourGif() {
+    document.querySelector('#previewing-video-step').setAttribute('class', 'hidden-element');
+    document.querySelector('#uploading-video-step').setAttribute('class', 'search-sec video-width');
     let form = new FormData();
     form.append('file', recorder.getBlob(), 'myGif.gif')
-    console.log(form.get('file'))
+    //console.log(form.get('file'))
     const uploadURL = 'https://upload.giphy.com/v1/gifs?api_key=kdFOwDT4ieXpQiNeUk4B1EhjZ0yt0Irt'
     const answerFetch = await fetch(uploadURL, {
         method: 'POST',
@@ -55,6 +51,8 @@ async function uploadYourGif() {
     }).then(response => response.json()
     ).then(
         function(sucess) {
+            document.querySelector('#uploading-video-step').setAttribute('class', 'hidden-element');
+            document.querySelector('#sucessing-upload-step').setAttribute('class','search-sec video-width');
             console.log(sucess.data.id)
             const gifUrlLocalStorage = localStorage.getItem('myGifosId');
             console.log(gifUrlLocalStorage)
@@ -77,18 +75,30 @@ async function uploadYourGif() {
                 const newGifosDiv = document.createElement('div');
                 container.replaceChild(newGifosDiv, oldGifosDiv);
                 newGifosDiv.setAttribute('id', 'mygifos-container')
+                newGifosDiv.setAttribute('class', 'images-container')
                 renderGifUrl(Array.from(gifosUrlSet))
                 document.querySelector('#gifo-uploaded-img').setAttribute('src', 'https://media.giphy.com/media/' + sucess.data.id + '/200w_d.gif');
                 document.querySelector('#copy-url-gifo-btn').addEventListener('click', callback => {
-                    const myGifoUrl = 'https://media.giphy.com/media/' + sucess.data.id + '/200w_d.gif';
-                    console.log(myGifoUrl)
-                    myGifoUrl.select();
+                    const container = document.querySelector('.gifo-created-btns');
+                    const auxiliarInput = document.createElement('input');
+                    container.appendChild(auxiliarInput);
+                    auxiliarInput.setAttribute('value', 'https://media.giphy.com/media/' + sucess.data.id + '/200w_d.gif');
+                    auxiliarInput.select();
                     document.execCommand("copy");
+                    alert("URL copied to clipboard!");
+                    container.removeChild(auxiliarInput);
+                })
+                document.querySelector('#download-gifo-btn').addEventListener('click', callback => {
+                    const anchor = document.querySelector('#download-gifo-btn')
+                    anchor.setAttribute('download', 'my-Gifo-' + sucess.data.id);
+                    anchor.setAttribute('href', 'https://media.giphy.com/media/' + sucess.data.id + '/200w_d.gif');
                 })
             }
         }
-    ).catch(error => console.log(error)
-    );
+    ).catch(error => {
+        alert('Sorry, occur an error uploading your Gifo.')
+        console.log(error)
+    });
 };
 function renderGifUrl(array) {
     const gifosDiv = document.querySelector('#mygifos-container');
@@ -123,7 +133,6 @@ document.querySelector('#start-capture-button').addEventListener('click', callba
     document.querySelector('#streaming-camera-step').setAttribute('class', 'hidden-element');
     document.querySelector('#recording-video-step').setAttribute('class','search-sec video-width');
     captureCamera(function(camera) {
-        //document.querySelector('h1').innerHTML = 'Waiting for Gif Recorder to start...';
         recorder = RecordRTC(camera, {
             type: 'gif',
             frameRate: 1,
@@ -141,7 +150,6 @@ document.querySelector('#start-capture-button').addEventListener('click', callba
                 let duration = (new Date().getTime() - timestamps[0]) / 1000;
                 if(duration < 0) return;
                 document.querySelector('#start-timestamp-div').innerHTML = 'Recording duration: ' + duration;
-                //document.querySelector('h1').innerHTML = 'Recording duration: ' + duration;
             },
             reset: function() {}
         });
@@ -184,18 +192,32 @@ function calculateTimeDuration(secs) {
     return hr + ':' + min + ':' + sec;
 }
 document.querySelector('#upload-gif-button').addEventListener('click', callback => {
-    document.querySelector('#previewing-video-step').setAttribute('class', 'hidden-element');
-    document.querySelector('#sucessing-upload-step').setAttribute('class','search-sec video-width');
     uploadYourGif()
 })
-document.querySelector('#upload-gif-button').addEventListener('click', callback => {
-    document.querySelector('#previewing-video-step').setAttribute('class', 'hidden-element');
-    document.querySelector('#sucessing-upload-step').setAttribute('class','search-sec video-width');
+document.querySelector('#ready-button').addEventListener('click', callback => {
+    document.querySelector('#sucessing-upload-step').setAttribute('class', 'hidden-element');
+})
+document.querySelector('#upload-canceled-button').addEventListener('click', callback => {
+    document.querySelector('#uploading-video-step').setAttribute('class', 'hidden-element');
+    document.querySelector('#video-explaining-step').setAttribute('class','search-sec video-width');
+    recorder.stopRecording();
+})
+document.querySelector('#cancel-button').addEventListener('click', callback => {
+    window.location.href = 'index.html'
 })
 /*document.querySelector('#copy-url-gifo-btn').addEventListener('click', callback => {
-    const myGifoUrl = 'https://media.giphy.com/media/' + 'sucess.data.id' + '/200w_d.gif';
-    console.log(myGifoUrl)
-    myGifoUrl.select();
+    const variable = 123;
+    const container = document.querySelector('.gifo-created-btns')
+    const auxiliarInput = document.createElement('input');
+    container.appendChild(auxiliarInput);
+    auxiliarInput.setAttribute('value', '0hi' + variable + 'hi0')
+    auxiliarInput.select();
     document.execCommand("copy");
     alert("Copied to clipboard!");
+    container.removeChild(auxiliarInput)   
+})
+document.querySelector('#download-gifo-btn').addEventListener('click', callback => {
+    const anchor = document.querySelector('#download-gifo-btn')
+    anchor.setAttribute('href', 'images/close.svg');
+    anchor.setAttribute('download', 'lalala');
 })*/

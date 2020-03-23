@@ -282,3 +282,14 @@ main {
 .gifo-created-btns > button {
     margin: 5px;
 }
+.uploading-div-style {
+    background: #FFFFFF;
+    box-sizing: border-box;
+    margin: 15px;
+    border: 1px solid #80687D;
+    min-height: 380px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    text-align: center;
+}
