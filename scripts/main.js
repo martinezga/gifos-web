@@ -71,7 +71,11 @@ document.getElementById('search-Button').addEventListener("click", function() {
     document.querySelector('#menu-search-help').setAttribute('class', 'hidden-element')
 });
 document.getElementById('search-Input').addEventListener("keydown", function(e) {
-    document.querySelector('#menu-search-help').setAttribute('class', 'search-input-div')
+    document.querySelector('#search-Button').style.background = '#F7C9F3'
+    document.querySelector('#search-Button').style.color = '#000000'
+    document.querySelector('#lupa-image').setAttribute('src', 'images/lupa.svg')
+    document.querySelector('#menu-search-help').setAttribute('class', 'search-input-div');
+    setTimeout(function() {document.querySelector('#menu-search-help').setAttribute('class', 'hidden-element')}, 5000)
     if (e.keyCode === 13) {
         document.querySelector('#trends-Title').innerHTML = document.querySelector('#search-Input').value;
         userSearch(document.getElementById('search-Input').value);
@@ -195,13 +199,20 @@ document.querySelector('#dark-style').addEventListener('click', function(){
     const searchButtonStyle = document.querySelectorAll('.lila');
     for(let i = 0; i < searchButtonStyle.length; i++) {
         searchButtonStyle[i].style.background = '#EE3EFE'
+        searchButtonStyle[i].style.color = '#FFFFFF'
     };
+    document.querySelector('#my-gifos-nav-btn').setAttribute('class', 'dark-btn deco-btn')
     document.body.setAttribute('class', 'dark-body');
     document.querySelector('#main-body').setAttribute('class', 'dark-body');
     const searchTitleStyle = document.querySelectorAll('.search-title');
     for(let i = 0; i < searchTitleStyle.length; i++) {
         searchTitleStyle[i].setAttribute('class', 'dark-search-title');
     };
+    const searchAnchorsStyle = document.querySelectorAll('a');
+    for(let i = 0; i < searchButtonStyle.length; i++) {
+        searchAnchorsStyle[i].style.color = '#FFFFFF'
+    };
+    
 })
 document.querySelector('#light-style').addEventListener('click', function() {
     document.querySelector('#main-logo').src = 'images/gifOF_logo.png'
@@ -217,6 +228,11 @@ document.querySelector('#light-style').addEventListener('click', function() {
     for(let i = 0; i < searchDarkTitles.length; i++) {
         searchDarkTitles[i].setAttribute('class', 'search-title')
     }
+    const searchDarkAnchors = document.querySelectorAll('a');
+    for(let i = 0; i < searchDarkAnchors.length; i++) {
+        searchDarkAnchors[i].toggleAttribute('style')
+    }
+    document.querySelector('#my-gifos-nav-btn').setAttribute('class', 'btn deco-btn')
 })
 document.querySelector('#search-example-1').addEventListener('click', function() {
     document.querySelector('#trends-Title').innerHTML = document.querySelector('#search-example-1').innerHTML;

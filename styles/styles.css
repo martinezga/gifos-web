@@ -45,7 +45,7 @@ main {
 .lila:hover {
     background: rgb(235, 193, 231);
 }
-.drpopdown {
+.dropdown {
     display: none;
 }
 .deco-btn::first-letter {
@@ -132,6 +132,12 @@ main {
 }
 .btn2 > img {
     padding-right: 7px;
+}
+.btn2:hover {
+    border: 1px dotted #110038;
+}
+.btn2:active {
+    border: 1px dotted #110038;
 }
 .title-blocks {
     background: #FFFAFE;
@@ -223,14 +229,13 @@ main {
 }
 /*upload page's style*/
 .explaining-text {
-    padding-left: 10vw;
+    padding: 0 5vw;
 }
 .explaining-text > p {
-    padding: 5px 0;
+    padding: 10px;
 }
 .explaining-title {
-    padding-top: 35px;
-    padding-left: 5vw;
+    padding: 30px 2vw;
 }
 .gif-recorder-stylish {
     width: 100%;

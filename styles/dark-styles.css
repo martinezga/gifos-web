@@ -13,3 +13,13 @@
     padding-top: 3px;
     float: right;
 }
+.dark-btn {
+    box-sizing: border-box;
+    text-align: center;
+    padding: 5px 15px;
+    background: #1a1a1a;
+}
+.dark-btn a {
+    text-decoration: none;
+    color: #000000;
+}

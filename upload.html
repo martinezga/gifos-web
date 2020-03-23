@@ -12,11 +12,21 @@
 </head>
 <body>
     <header class="search-title">Welcome to my GIFOS website! ----- You are visitor number: 3.126.979</header>
-    <main>
+    <main id="main-body">
         <nav class="navBar">
             <figure><a href="index.html"><img class="space" src="images/arrow.svg" alt="Left arrow icon"><img id="main-logo" src="images/gifOF_logo.png" alt="My GifOS's logo"></a></figure>
             <button class="btn lila space"><a href="upload.html">Create Guifos</a></button>
-            <button class="btn deco-btn"><a href="#uploaded-gifs">My Gifos</a></button>
+            <div class="dropdown-menu">
+                <div class="dropdown-content-base">
+                    <button class="btn lila">Choose tema</button>
+                    <button id="dropdown-button" class="btn lila dropdown space"><img src="images/dropdown.svg" alt="A dropdown icon"></button>
+                </div>
+                <div id="dropdown-content-menu" class="hidden-element">
+                    <button id="light-style" class="btn deco-btn">Sailor Day</button>
+                    <button id="dark-style" class="btn deco-btn">Sailor Night</button>
+                </div>
+            </div>
+            <button id="my-gifos-nav-btn" class="btn deco-btn"><a href="#uploaded-gifs">My Gifos</a></button>
         </nav>
         <section id="video-explaining-step" class="search-sec video-width">
             <div class="search-title">0.- Create your gifo!</div>
@@ -30,11 +40,11 @@
                 <p> ¿Ready to record your gifo?</p>                
             </div>
             <div class="recording-btn-style">
-                <button id="cancel-button" class="btn space">Cancel</button>
+                <button id="cancel-button" class="btn space"><a href="index.html">Cancel</a></button>
                 <button id="start-button" class="btn lila">Start</button>
             </div>
         </section>
-        <section id="streaming-camera-step" class="search-sec video-width">
+        <section id="streaming-camera-step" class="hidden-element">
             <div class="search-title">1.- Checking your camera device<img src="/images/close.svg" alt="close icon"></div>
             <video id="step1-streaming-video" class="gif-recorder-stylish"></video>
             <div class="recording-btn-style">
@@ -42,7 +52,7 @@
                 <button id="start-capture-button" class="btn lila">Capture</button>
             </div>
         </section>
-        <section id="recording-video-step" class="search-sec video-width">
+        <section id="recording-video-step" class="hidden-element">
             <div class="search-title">2.- Recording your gifo<img src="images/close.svg" alt="close icon"></div>
             <img id="step2-recording-video" class="gif-recorder-stylish"></img>
             <div class="recording-btn-style">
@@ -53,7 +63,7 @@
                 <button id="stop-recording-button" class="btn2 lila red-stop-btn">Stop recording</button>
             </div>           
         </section>
-        <section id="previewing-video-step" class="search-sec video-width">
+        <section id="previewing-video-step" class="hidden-element">
             <div class="search-title">3.- Preview your gifo<img src="images/close.svg" alt="close icon"></div>
             <img id="step3-preview-video" class="gif-recorder-stylish"></img>
             <div class="recording-btn-style">
@@ -64,7 +74,7 @@
                 <button id="upload-gif-button" class="btn lila">Upload gifo</button>
             </div>
         </section>
-        <section id="uploading-video-step" class="search-sec video-width">
+        <section id="uploading-video-step" class="hidden-element">
             <div class="search-title">4.- Uploading your gifo<img src="images/close.svg" alt="close icon"></div>
             <div class="uploading-div-style">
                 <figure>
@@ -76,7 +86,7 @@
                 <button id="upload-canceled-button" class="btn lila">Cancel</button>
             </div>
         </section>
-        <section id="sucessing-upload-step" class="search-sec video-width">
+        <section id="sucessing-upload-step" class="hidden-element">
             <div class="search-title">5.- Gifo uploaded sucessfully<img src="images/close.svg" alt="close icon"></div>
             <div class="gifo-created-div">
                 <div class="images-container">

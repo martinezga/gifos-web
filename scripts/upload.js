@@ -1,5 +1,53 @@
 var recorder;
 var dateStarted;
+document.querySelector('.dropdown-menu').addEventListener('mouseenter', function(){
+    document.getElementById('dropdown-content-menu').setAttribute('class', 'dropdown-show')
+})
+document.querySelector('.dropdown-menu').addEventListener('mouseleave', function(){
+    document.getElementById('dropdown-content-menu').setAttribute('class', 'hidden-element')
+})
+document.querySelector('#dark-style').addEventListener('click', function(){
+    document.querySelector('#main-logo').src = 'images/gifOF_logo_dark.png';
+    const searchButtonStyle = document.querySelectorAll('.lila');
+    for(let i = 0; i < searchButtonStyle.length; i++) {
+        searchButtonStyle[i].style.background = '#EE3EFE'
+        searchButtonStyle[i].style.color = '#FFFFFF'
+    };
+    document.querySelector('#my-gifos-nav-btn').setAttribute('class', 'dark-btn deco-btn')
+    document.querySelector('#cancel-button').setAttribute('class', 'dark-btn space')
+    document.body.setAttribute('class', 'dark-body');
+    document.querySelector('#main-body').setAttribute('class', 'dark-body');
+    const searchTitleStyle = document.querySelectorAll('.search-title');
+    for(let i = 0; i < searchTitleStyle.length; i++) {
+        searchTitleStyle[i].setAttribute('class', 'dark-search-title');
+    };
+    const searchAnchorsStyle = document.querySelectorAll('a');
+    for(let i = 0; i < searchButtonStyle.length; i++) {
+        searchAnchorsStyle[i].style.color = '#FFFFFF'
+    }
+
+})
+document.querySelector('#light-style').addEventListener('click', function() {
+    document.querySelector('#main-logo').src = 'images/gifOF_logo.png'
+    const darkBackgrounds = document.querySelectorAll('.dark-body');
+    for(let i = 0; i < darkBackgrounds.length; i++) {
+        darkBackgrounds[i].toggleAttribute('class');
+    };
+    const searchDarkButtons = document.querySelectorAll('.lila');
+    for(let i = 0; i < searchDarkButtons.length; i++) {
+        searchDarkButtons[i].toggleAttribute('style')
+    };
+    const searchDarkTitles = document.querySelectorAll('.dark-search-title');
+    for(let i = 0; i < searchDarkTitles.length; i++) {
+        searchDarkTitles[i].setAttribute('class', 'search-title')
+    }
+    const searchDarkAnchors = document.querySelectorAll('a');
+    for(let i = 0; i < searchDarkAnchors.length; i++) {
+        searchDarkAnchors[i].toggleAttribute('style')
+    }
+    document.querySelector('#my-gifos-nav-btn').setAttribute('class', 'btn deco-btn')
+    document.querySelector('#cancel-button').setAttribute('class', 'btn space')
+})
 function startStreamingVideo() {
     navigator.mediaDevices.getUserMedia({
         audio: false, 
@@ -202,10 +250,10 @@ document.querySelector('#upload-canceled-button').addEventListener('click', call
     document.querySelector('#video-explaining-step').setAttribute('class','search-sec video-width');
     recorder.stopRecording();
 })
-document.querySelector('#cancel-button').addEventListener('click', callback => {
+/*document.querySelector('#cancel-button').addEventListener('click', callback => {
     window.location.href = 'index.html'
 })
-/*document.querySelector('#copy-url-gifo-btn').addEventListener('click', callback => {
+document.querySelector('#copy-url-gifo-btn').addEventListener('click', callback => {
     const variable = 123;
     const container = document.querySelector('.gifo-created-btns')
     const auxiliarInput = document.createElement('input');
