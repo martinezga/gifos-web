@@ -188,6 +188,9 @@ Array.from(randomKeywords).forEach(gif => {
 document.querySelector('.go-up').addEventListener('click', function() {
     scrollToElement('.navBar')
 })
+document.querySelector('#create-gifo-nav-btn').addEventListener('click', function() {
+    window.location.href = 'upload.html'
+})
 document.querySelector('.dropdown-menu').addEventListener('mouseenter', function(){
     document.getElementById('dropdown-content-menu').setAttribute('class', 'dropdown-show')
 })
@@ -212,7 +215,6 @@ document.querySelector('#dark-style').addEventListener('click', function(){
     for(let i = 0; i < searchButtonStyle.length; i++) {
         searchAnchorsStyle[i].style.color = '#FFFFFF'
     };
-    
 })
 document.querySelector('#light-style').addEventListener('click', function() {
     document.querySelector('#main-logo').src = 'images/gifOF_logo.png'
@@ -233,6 +235,9 @@ document.querySelector('#light-style').addEventListener('click', function() {
         searchDarkAnchors[i].toggleAttribute('style')
     }
     document.querySelector('#my-gifos-nav-btn').setAttribute('class', 'btn deco-btn')
+})
+document.querySelector('#my-gifos-nav-btn').addEventListener('click', function() {
+    window.location.href = 'upload.html#uploaded-gifs'
 })
 document.querySelector('#search-example-1').addEventListener('click', function() {
     document.querySelector('#trends-Title').innerHTML = document.querySelector('#search-example-1').innerHTML;

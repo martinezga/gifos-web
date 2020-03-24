@@ -14,7 +14,7 @@
     <main id="main-body">
         <nav class="navBar">
             <figure><img id="main-logo" src="images/gifOF_logo.png" alt="My GifOS's logo"></figure>
-            <button class="btn lila space"><a href="upload.html">Create Guifos</a></button>
+            <button id="create-gifo-nav-btn" class="btn lila space">Create Guifos</button>
             <div class="dropdown-menu" >
                 <div class="dropdown-content-base">
                     <button class="btn lila">Choose tema</button>
@@ -25,13 +25,13 @@
                     <button id="dark-style" class="btn deco-btn">Sailor Night</button>
                 </div>
             </div>
-            <button id="my-gifos-nav-btn" class="btn deco-btn"><a href="upload.html#uploaded-gifs">My Gifos</a></button>
+            <button id="my-gifos-nav-btn" class="btn deco-btn">My Gifos</button>
         </nav>
-        <section>
+        <div>
             <div id="search-bar-principal-div" class="search-sec deco-div-search">
                 <div class="search-title">Search</div>
                 <div class="search-input-div deco-div-search">
-                    <input type="text" name="" id="search-Input" placeholder=" Search for something...">
+                    <input type="text" id="search-Input" placeholder=" Search for something...">
                     <button id="search-Button" class="btn2"><img id="lupa-image" src="images/lupa_inactive.svg" alt="A lens icon">Search</button>                    
                 </div>
                 <div id="menu-search-help" class="hidden-element">
@@ -41,13 +41,13 @@
                 </div>
                 <div id="words-searched"></div>
             </div>
-        </section>
-        <section id="suggestion-container">
+        </div>
+        <div id="suggestion-container">
             <div class="title-blocks">Today's suggestion</div>
-        </section>
-        <section id="container-Base">
+        </div>
+        <div id="container-Base">
             <div id="trends-Title" class="title-blocks">Trends</div>
-        </section>
+        </div>
         <button class="btn lila go-up">Go up</button> 
     </main>
     <script src="scripts/main.js"></script>

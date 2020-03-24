@@ -1,5 +1,8 @@
 var recorder;
 var dateStarted;
+document.querySelector('#create-gifo-nav-btn').addEventListener('click', function() {
+    window.location.href = 'upload.html'
+})
 document.querySelector('.dropdown-menu').addEventListener('mouseenter', function(){
     document.getElementById('dropdown-content-menu').setAttribute('class', 'dropdown-show')
 })
@@ -22,10 +25,9 @@ document.querySelector('#dark-style').addEventListener('click', function(){
         searchTitleStyle[i].setAttribute('class', 'dark-search-title');
     };
     const searchAnchorsStyle = document.querySelectorAll('a');
-    for(let i = 0; i < searchButtonStyle.length; i++) {
+    for(let i = 0; i < searchAnchorsStyle.length; i++) {
         searchAnchorsStyle[i].style.color = '#FFFFFF'
     }
-
 })
 document.querySelector('#light-style').addEventListener('click', function() {
     document.querySelector('#main-logo').src = 'images/gifOF_logo.png'
@@ -47,6 +49,12 @@ document.querySelector('#light-style').addEventListener('click', function() {
     }
     document.querySelector('#my-gifos-nav-btn').setAttribute('class', 'btn deco-btn')
     document.querySelector('#cancel-button').setAttribute('class', 'btn space')
+})
+document.querySelector('#my-gifos-nav-btn').addEventListener('click', function() {
+    window.location.href = '#uploaded-gifs'
+})
+document.querySelector('#cancel-button').addEventListener('click', function() {
+    window.location.href = 'index.html'
 })
 function startStreamingVideo() {
     navigator.mediaDevices.getUserMedia({
@@ -137,9 +145,12 @@ async function uploadYourGif() {
                     container.removeChild(auxiliarInput);
                 })
                 document.querySelector('#download-gifo-btn').addEventListener('click', callback => {
-                    const anchor = document.querySelector('#download-gifo-btn')
-                    anchor.setAttribute('download', 'my-Gifo-' + sucess.data.id);
+                    const container = document.querySelector('#download-gifo-btn');
+                    const anchor = document.createElement('a');
+                    container.appendChild(anchor);
                     anchor.setAttribute('href', 'https://media.giphy.com/media/' + sucess.data.id + '/200w_d.gif');
+                    anchor.setAttribute('download', 'my-Gifo-' + sucess.data.id);
+                    container.removeChild(anchor);
                 })
             }
         }
@@ -161,9 +172,9 @@ function renderGifUrl(array) {
 function verifyMyGifsLocalStore() {
     const gifUrlLocalStorage = localStorage.getItem('myGifosId');
     if (gifUrlLocalStorage === null) {
-        const gifosUrlArray = [];
-        localStorage.setItem('myGifosId', gifosUrlArray);
-        renderGifUrl(gifosUrlArray);
+        //const gifosUrlArray = [];
+        localStorage.setItem('myGifosId', '[]');
+        //renderGifUrl(gifosUrlArray);
     } else {     
         const gifUrlLocalStorageArray = JSON.parse(gifUrlLocalStorage);
         let gifosUrlSet = new Set();

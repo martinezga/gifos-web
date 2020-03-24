@@ -229,13 +229,13 @@ main {
 }
 /*upload page's style*/
 .explaining-text {
-    padding: 0 5vw;
+    padding: 0 6vw;
 }
 .explaining-text > p {
-    padding: 10px;
+    padding: 3px;
 }
 .explaining-title {
-    padding: 30px 2vw;
+    padding: 30px 3vw;
 }
 .gif-recorder-stylish {
     width: 100%;
