@@ -90,7 +90,7 @@ function captureCamera(callback) {
     });
 }
 function stopRecordingCallback() {
-    console.log(recorder.getBlob())
+    //console.log(recorder.getBlob())
     document.querySelector('#step3-preview-video').src = URL.createObjectURL(recorder.getBlob())
     recorder.camera.stop();
 }

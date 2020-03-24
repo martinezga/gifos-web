@@ -18,8 +18,11 @@
     text-align: center;
     padding: 5px 15px;
     background: #1a1a1a;
+    color: #FFFFFF;
 }
 .dark-btn a {
     text-decoration: none;
-    color: #000000;
+}
+.dark-btn:hover {
+    border: 1px dotted #FFFFFF;
 }
