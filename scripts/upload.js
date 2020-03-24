@@ -145,12 +145,9 @@ async function uploadYourGif() {
                     container.removeChild(auxiliarInput);
                 })
                 document.querySelector('#download-gifo-btn').addEventListener('click', callback => {
-                    const container = document.querySelector('#download-gifo-btn');
-                    const anchor = document.createElement('a');
-                    container.appendChild(anchor);
+                    const anchor = document.querySelector('#download-gifo-btn');
                     anchor.setAttribute('href', 'https://media.giphy.com/media/' + sucess.data.id + '/200w_d.gif');
                     anchor.setAttribute('download', 'my-Gifo-' + sucess.data.id);
-                    container.removeChild(anchor);
                 })
             }
         }
@@ -276,7 +273,9 @@ document.querySelector('#copy-url-gifo-btn').addEventListener('click', callback 
     container.removeChild(auxiliarInput)   
 })
 document.querySelector('#download-gifo-btn').addEventListener('click', callback => {
+    document.querySelector('#download-gifo-btn').setAttribute('href', 'images/close.svg');
+    document.querySelector('#download-gifo-btn').setAttribute('download', 'lalala');
     const anchor = document.querySelector('#download-gifo-btn')
-    anchor.setAttribute('href', 'images/close.svg');
+    anchor.setAttribute('xmlns', 'images/close.svg');
     anchor.setAttribute('download', 'lalala');
 })*/
